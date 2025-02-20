@@ -29,7 +29,6 @@ const RestaurantMenuPage = async ({
   if (!restaurant) {
     return notFound();
   }
-  console.log(restaurant);
   return (
     <div>
       <RestaurantHeader restaurant={restaurant} />
