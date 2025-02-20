@@ -1,14 +1,17 @@
 "use client";
 
+
 import { Prisma } from "@prisma/client";
 import { ChefHatIcon, ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatCurrency } from "@/helpers/format-current";
 
+import CartSheet from "../../components/cart-sheet";
+import { CartContext } from "../../contexts/cart";
 
 interface ProductDetailsProps {
   product: Prisma.ProductGetPayload<{
@@ -36,7 +39,11 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
   const handleIncreaseQuantity = () => {
     setQuantity((prev) => prev + 1);
   };
- 
+
+  const { toggleCart } = useContext(CartContext);
+  const handleAddToCart = () => {
+    toggleCart();
+  };
   return (
     <>
       <div className="relative z-50 mt-[-1.5rem] flex flex-auto flex-col overflow-hidden rounded-t-3xl p-5">
@@ -101,10 +108,12 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
           </ScrollArea>
         </div>
 
-        <Button className="w-full mt-2 rounded-full">
+        <Button className="mt-2 w-full rounded-full" onClick={handleAddToCart}>
           Adicionar à sacola
         </Button>
       </div>
+      <CartSheet/>
+    
     </>
   );
 };
