@@ -1,16 +1,19 @@
 
 import { TrashIcon } from "lucide-react";
 import Image from "next/image";
+import { useContext } from "react";
 
 import { Button } from "@/components/ui/button";
 import { formatCurrency } from "@/helpers/format-current";
 
 import { CartProduct } from "../../contexts/cart";
-
+import { CartContext } from "../../contexts/cart";
 interface CartItemProps {
     item: CartProduct;
 }
 const CartItem = ({ item }: CartItemProps) => {
+    const { decreaseProduct} = useContext(CartContext);
+
     return ( 
         <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -22,13 +25,15 @@ const CartItem = ({ item }: CartItemProps) => {
                 <p className="text-xs max-w-[90%] truncate text-ellipsis">{item.name}</p>
                 <p className="text-sm font-semibold gap-1">{formatCurrency(item.price)}</p>
                 <div className="flex item-center text-center items-center gap-1">
-                    <Button variant="outline" className="h-7 w-7 rounded-full" >-</Button>
+                    <Button variant="outline" className="h-7 w-7 rounded-full" onClick={() => decreaseProduct(item.id)}>-</Button>
                     <p className="text-xs w-7">{item.quantity}</p>
                     <Button variant="destructive" className="h-7 w-7 rounded-full">+</Button>
                 </div>
             </div>
             </div>
-            <Button variant="outline" className="h-7 w-7 rounded-full"><TrashIcon/></Button>
+            <Button variant="outline" className="h-7 w-7 rounded-full" >   
+                <TrashIcon/>
+            </Button>
         </div>
      );
 }
