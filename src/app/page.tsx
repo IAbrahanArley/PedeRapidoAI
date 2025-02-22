@@ -1,5 +1,11 @@
+import LandingPage from "@/components/ui/landingpage/page";
+ 
 const Home = () => {
-  return <h1>Home</h1>;
-};
-
+  return ( 
+    <div className="items-center justify-center flex  bg-cyan-100">
+     <LandingPage/>
+    </div>
+   );
+}
+ 
 export default Home;
