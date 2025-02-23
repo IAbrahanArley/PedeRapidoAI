@@ -1,9 +1,12 @@
 "use client"
+
 import { Check } from "lucide-react";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+import styles from "./subscriptions.module.css"
 
 const planos = [
   {
@@ -43,71 +46,76 @@ const Subscriptions = () => {
   const [planoAnual, setPlanoAnual] = useState(false);
 
   return (
-    <div className="flex flex-col items-center w-screen py-16 bg-gradient-to-b from-white to-white">
-      
-      <h2 className="text-3xl font-bold bg-fuchsia--900 text-center">
-      Crie sua loja online e comece a vender hoje mesmo!
-      </h2>
-
-      <div className="flex items-center gap-3 mt-4">
-        <span className="text-gray-600">Mensal</span>
-        <label className="relative inline-flex items-center cursor-pointer">
-          <input 
-            type="checkbox" 
-            className="sr-only peer"
-            checked={planoAnual}
-            onChange={() => setPlanoAnual(!planoAnual)}
-          />
-          <div className="w-11 h-6 bg-gray-300 peer-focus:ring-2 peer-focus:ring-fuchsia-500 rounded-full peer-checked:bg-fuchsia-700"></div>
-        </label>
-        <span className="text-gray-600">Anual</span>
-      </div>
-
-      {planoAnual &&(
-        <p className="mt-2 text-sm text-fuchsia-900 bg-fuchsia-100 px-4 py-1 rounded-full">
-        Economize 20% OFF e parcele em até 6x sem juros
-      </p>
-      )}
-
-<div className="flex flex-wrap justify-center gap-6 mt-10">
-  {planos.map((plano, index) => (
-    <Card
-      key={index}
-      className={`w-72 p-6 text-center rounded-lg shadow-md transition-all flex flex-col min-h-full 
-        ${plano.destaque ? "bg-fuchsia-700 text-white scale-105" : "bg-white"}`
-      }
-    >
-      <CardHeader>
-        <CardTitle className="text-xl font-bold">{plano.nome}</CardTitle>
-      </CardHeader>
-      <CardContent className="flex flex-col flex-grow">
-        <p className={`text-2xl font-semibold ${plano.destaque ? "text-white" : "text-gray-700"}`}>
-          {planoAnual ? plano.preco.anual : plano.preco.mensal}
-        </p>
-        <ul className="mt-4 space-y-2 text-left flex-grow">
-          {plano.beneficios.map((beneficio, i) => (
-            <li key={i} className="flex items-center gap-2">
-              <Check className={`${plano.destaque ? "text-white" : "text-green-500"}`} size={18} />
-              {beneficio}
-            </li>
+      <div className="flex flex-col items-center w-screen py-16 bg-gradient-to-b from-white to-white">
+        <h2 className="text-3xl font-bold bg-fuchsia--900 text-center">
+          Crie sua loja online e comece a vender hoje mesmo!
+        </h2>
+  
+        {/* Toggle de planos */}
+        <div className="flex items-center gap-3 mt-4">
+          <span className="text-gray-600">Mensal</span>
+          <label className="relative inline-flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              className="sr-only peer"
+              checked={planoAnual}
+              onChange={() => setPlanoAnual(!planoAnual)}
+            />
+            <div className="w-11 h-6 bg-gray-300 rounded-full peer-checked:bg-fuchsia-700 relative transition-all duration-300">
+              <span className="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 ease-in-out transform peer-checked:translate-x-5"></span>
+            </div>
+          </label>
+          <span className="text-gray-600">Anual</span>
+        </div>
+  
+        {planoAnual && (
+          <p className="mt-2 text-sm text-fuchsia-900 bg-fuchsia-100 px-4 py-1 rounded-full">
+            Economize 20% OFF e parcele em até 6x sem juros
+          </p>
+        )}
+  
+        <div className="flex flex-wrap justify-center gap-6 mt-10">
+          {planos.map((plano, index) => (
+            <div key={index} className="relative">
+              {/* Efeito neon apenas no plano destacado */}
+              {plano.destaque && <span className={styles.neonBorder}></span>}
+  
+              <Card
+                className={`w-72 p-6 text-center rounded-lg shadow-md transition-all flex flex-col min-h-full relative
+                  ${plano.destaque ? "bg-fuchsia-700 text-white scale-105" : "bg-white"}`
+                }
+              >
+                <CardHeader>
+                  <CardTitle className="text-xl font-bold">{plano.nome}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-col flex-grow">
+                  <p className={`text-2xl font-semibold ${plano.destaque ? "text-white" : "text-gray-700"}`}>
+                    {planoAnual ? plano.preco.anual : plano.preco.mensal}
+                  </p>
+                  <ul className="mt-4 space-y-2 text-left flex-grow">
+                    {plano.beneficios.map((beneficio, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <Check className={`${plano.destaque ? "text-white" : "text-green-500"}`} size={18} />
+                        {beneficio}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+                <div className="mt-auto p-6">
+                  <Button
+                    className={`w-full py-2 rounded-md text-lg 
+                      ${plano.destaque ? "bg-white text-fuchsia-700 hover:bg-gray-200" : "bg-fuchsia-700 text-white hover:bg-fuchsia-800"}`
+                    }
+                  >
+                    Criar minha loja
+                  </Button>
+                </div>
+              </Card>
+            </div>
           ))}
-        </ul>
-      </CardContent>
-      <div className="mt-auto p-6">
-        <Button 
-          className={`w-full py-2 rounded-md text-lg 
-            ${plano.destaque ? "bg-white text-fuchsia-700 hover:bg-gray-200" : "bg-fuchsia-700 text-white hover:bg-fuchsia-800"}`
-          }
-        >
-          Criar minha loja
-        </Button>
+        </div>
       </div>
-    </Card>
-  ))}
-</div>
-
-    </div>
-  );
+    );
 };
 
 export default Subscriptions;
