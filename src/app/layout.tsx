@@ -13,8 +13,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "FSW Donalds",
-  description: "Bora finalizar esse projeto lindo!",
+  title: "PedeRápidoAI",
+  description: "Faça seu pedido de maneira rápida e eficiente!",
 };
 
 export default function RootLayout({
