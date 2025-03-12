@@ -1,7 +1,8 @@
+"use client";
 import "./globals.css";
 
-import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
 
 import { Toaster } from "@/components/ui/sonner";
 
@@ -12,11 +13,6 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "PedeRápidoAI",
-  description: "Faça seu pedido de maneira rápida e eficiente!",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,12 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
-        <CartProvider>
-          {children}
-        </CartProvider>
+        <SessionProvider>
+          <CartProvider>{children}</CartProvider>
+        </SessionProvider>
         <Toaster />
-
-        </body>
+      </body>
     </html>
   );
 }
