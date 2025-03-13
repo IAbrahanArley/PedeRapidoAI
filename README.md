@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🍽️ Sistema de Entregas para Restaurantes
 
-## Getting Started
+Este é um sistema completo de **gestão de pedidos e entregas para restaurantes**, desenvolvido com **Next.js**, **PostgreSQL**, **NextAuth** e diversas ferramentas modernas para garantir performance, segurança e uma ótima experiência de usuário.
 
-First, run the development server:
+---
 
+## 📦 Tecnologias Utilizadas
+
+- **Next.js**: Framework React full-stack para aplicações web modernas.
+- **NextAuth.js**: Autenticação segura e flexível.
+- **PostgreSQL**: Banco de dados relacional robusto e escalável.
+- **Prisma ORM**: Mapeamento objeto-relacional para trabalhar com o PostgreSQL de forma simples e tipada.
+- **TailwindCSS + ShadCN UI**: Estilização rápida, responsiva e moderna com componentes prontos para produção.
+- **Dnd-Kit**: Biblioteca de drag-and-drop para interação com o Kanban.
+- **Axios + SecureStore**: Comunicação segura com o backend e armazenamento de tokens.
+- **Context API / Redux**: Gerenciamento de estado para autenticação e controle da aplicação.
+
+---
+
+## 📋 Funcionalidades
+
+### 👥 Autenticação
+- Login seguro com **NextAuth**.
+- Armazenamento de tokens com `SecureStore`.
+- Controle de sessão e rotas protegidas.
+
+### 📦 Pedidos
+- Listagem de pedidos com tabela customizada usando **ShadCN UI**.
+- Visualização de detalhes: cliente, CPF, valor total, status e data.
+
+### 🗂️ Kanban de Pedidos
+- Visualização em **Kanban Board** com as colunas:
+  - 🟢 Novo Pedido
+  - 🔵 Em Preparo
+  - 🟡 Em Entrega
+  - 🟣 Entregue
+- Arraste os cards entre colunas para atualizar o status do pedido em tempo real.
+
+### 🧾 Produtos e Restaurante
+- Cada pedido está vinculado a um restaurante e contém vários produtos.
+- Cada item registra quantidade, preço e produto relacionado.
+
+
+### 🚀 Como rodar localmente
+1. Clone o projeto:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone git@github.com:IAbrahanArley/PedeRapidoAI.git
+cd PedeRapidAI  
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instale as depêdencias:
+```bash
+npm i
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Configure o .env:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Migrations com Prisma:
 
-## Learn More
+5. Rode o projeto:
 
-To learn more about Next.js, take a look at the following resources:
+### 🎯 Objetivo
+Facilitar a gestão de pedidos de um restaurante, otimizando o acompanhamento desde a criação até a entrega, com controle de status visual, responsivo e intuitivo.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
