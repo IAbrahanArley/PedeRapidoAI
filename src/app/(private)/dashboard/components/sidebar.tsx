@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, Home, Inbox, LogOut,Search, Settings } from "lucide-react";
+import { Calendar, Home, LogOut,Package,Search, Settings, ShoppingCart  } from "lucide-react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 
@@ -17,7 +17,8 @@ import {
 
 const items = [
   { title: "Dashboard", url: "/dashboard/home", icon: Home },
-  { title: "Inbox", url: "/inbox", icon: Inbox },
+  { title: "Pedidos", url: "/dashboard/pedidos", icon: ShoppingCart },
+  { title: "Produtos", url: "/dashboard/produtos", icon: Package },
   { title: "Agenda", url: "/calendar", icon: Calendar },
   { title: "Pesquisar", url: "/search", icon: Search },
   { title: "Configurações", url: "/settings", icon: Settings },
