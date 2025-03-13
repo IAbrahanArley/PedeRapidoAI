@@ -54,10 +54,23 @@ npm i
 ```
 
 3. Configure o .env:
+```bash
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=
+DATABASE_URL=
+```
 
 4. Migrations com Prisma:
+```bash
+npx prisma migrate dev
+```
 
 5. Rode o projeto:
+```bash
+npm run dev
+```
 
 ### 🎯 Objetivo
 Facilitar a gestão de pedidos de um restaurante, otimizando o acompanhamento desde a criação até a entrega, com controle de status visual, responsivo e intuitivo.
