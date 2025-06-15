@@ -74,4 +74,5 @@ npm run dev
 
 ### 🎯 Objetivo
 Facilitar a gestão de pedidos de um restaurante, otimizando o acompanhamento desde a criação até a entrega, com controle de status visual, responsivo e intuitivo.
+![pederapidoai](https://github.com/user-attachments/assets/7aec6d7d-1588-4995-905e-699bdce42f7a)
 
